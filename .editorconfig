@@ -61,7 +61,7 @@ end_of_line = crlf
 
 # Bash Files
 [*.sh]
-end_of_line = crlf
+end_of_line = lf
 
 # Makefiles
 [Makefile]

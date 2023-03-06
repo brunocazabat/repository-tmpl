@@ -1,6 +1,6 @@
 echo -e "\nPasting the .editorconfig, .vscode/settings.json and .gitignore files in the current directory:"
 pwd
-configpath=$( dirname -- "$( readlink -f -- "$0"; )"; )
+configpath=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cp "$configpath"/.editorconfig .
 mkdir -p .vscode
 cp "$configpath"/.vscode/settings.json .vscode/settings.json

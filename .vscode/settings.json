@@ -1,7 +1,10 @@
 {
   "editor.formatOnSave": true,
+  "files.insertFinalNewline": false,
   "[*]": {
-    "files.insertFinalNewline": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
   },
 }

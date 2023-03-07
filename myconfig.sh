@@ -10,7 +10,7 @@ if [ -f .gitignore ]; then
         echo -e "\n.gitignore rules already present in the .gitignore file. Skipping."
     else
         echo -e "\n.gitignore rules not present in the .gitignore file. Appending it."
-        cat .gitignore | curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.gitignore
+        cat .gitignore <(curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.gitignore) > .gitignore.tmp
     fi
 else
     curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.gitignore > .gitignore

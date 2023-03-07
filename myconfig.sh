@@ -1,24 +1,24 @@
-scriptpath=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-currentpath=$(pwd)
-if [ "$scriptpath" != "$currentpath" ]; then
-    echo -e "Pasting the .editorconfig, .vscode/settings.json and .gitignore files in the current directory:"
-    pwd
-    cp "$scriptpath"/.editorconfig .
-    mkdir -p .vscode
-    cp "$scriptpath"/.vscode/settings.json .vscode/settings.json
-    if [ -f .gitignore ]; then
-        echo -e "\nAppending the .gitignore file in the current directory with new rules:"
-        if grep -q "# Automatic editorconfig + autoformat on save file for Visual Studio Code" .gitignore; then
-            echo -e "\n.gitignore rules already present in the .gitignore file. Skipping."
-        else
-            echo -e "\n.gitignore rules not present in the .gitignore file. Appending it."
-            cat "$scriptpath"/.gitignore >> .gitignore
-        fi
-    else
-        echo -e "\nPasting the .gitignore file in the current directory:"
-        cp "$scriptpath"/.gitignore .
-    fi
-    echo -e "\nDone.\n"
+echo -e "Pasting the .editorconfig, .vscode/settings.json and .gitignore files in the current directory:"
+if [ -f .editorconfig ]; then
+    echo -e "\n.editorconfig file already present in the current directory. Skipping."
 else
-    echo -e "You´re executing the init in the script repository itself, not intended.\n"
+    curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.editorconfig > .editorconfig
 fi
+if [ -f .gitignore ]; then
+    echo -e "\nAppending the .gitignore file in the current directory with new rules:"
+    if grep -q "# Automatic editorconfig + autoformat on save file for Visual Studio Code" .gitignore; then
+        echo -e "\n.gitignore rules already present in the .gitignore file. Skipping."
+    else
+        echo -e "\n.gitignore rules not present in the .gitignore file. Appending it."
+        cat .gitignore | curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.gitignore
+    fi
+else
+    curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.gitignore > .gitignore
+fi
+mkdir -p .vscode
+if [ -f .vscode/settings.json ]; then
+    echo -e "\n.vscode/settings.json file already present in the current directory. Skipping."
+else
+    curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.vscode/settings.json > .vscode/settings.json
+fi
+echo -e "\nDone. Leaving this no-longer-empty place now.\n"

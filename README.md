@@ -1,9 +1,37 @@
-## REPOSITORY-TMPL
+# TBD-Projec Foobar
 
-Once cloned, add the repository to the user env variable.
-Once added to the Path, restart your CMD.
+Foobar is a Python library for dealing with word pluralization.
 
-Get to the project file, open CMD, execute: bash myconfig.sh
-It will execute the shell script, pasting the .editorconfig, .vscode/settings.json and .gitignore files in the current directory.
+## Installation
 
-You can also drop the init.bat into an aliases folder, who´s also registred in the %PATH%.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+
+```bash
+pip install foobar
+```
+
+## Usage
+
+```python
+import foobar
+
+# returns 'words'
+foobar.pluralize('word')
+
+# returns 'geese'
+foobar.pluralize('goose')
+
+# returns 'phenomenon'
+foobar.singularize('phenomena')
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

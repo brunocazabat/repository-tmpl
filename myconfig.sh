@@ -28,4 +28,10 @@ else
     echo -e "\n${N}.vscode/settings.json file not present in the current directory. ${G}Creating it."
     curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/.vscode/settings.json > .vscode/settings.json
 fi
+if [ -f README.md ]; then
+    echo -e "\n${N}README.md file already present in the current directory. ${R}Skipping."
+else
+    echo -e "\n${N}README.md file not present in the current directory. ${G}Creating it."
+    curl -s https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/README.md > README.md
+fi
 echo -e "\n${G}Done. Leaving this no-longer-empty place now.${N}\n"

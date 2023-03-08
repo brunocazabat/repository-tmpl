@@ -19,10 +19,11 @@ tag +VERSION:
 # This command will initialize the repository with a distant template
 init:
   Write-Host "Initializing repository with a distant template"
-  @just push "Feat: Initial commit"
+  @just push "Feat: Initial commit Starting"
   Invoke-WebRequest "https://raw.githubusercontent.com/brunocazabat/repository-tmpl/main/myconfig.sh" -OutFile ./script.sh
   bash ./script.sh
   rm ./script.sh
+  @just push "Feat: Initial commit Finished"
 
 # This command will push the changes to the main branch
 push +MESSAGE:
